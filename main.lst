@@ -1,0 +1,8 @@
+0000              1   ; main.asm
+0000              2   ; 
+0000              3   ; Define variables in this file that are used in other programs so we don't have overlapping variable names, etc.
+0000              4   ;
+0000              5   ; Always try to compile from this file too, so we don't have conflicting/multiple labels of the same name.
+0000              6   ; 
+0000              7   
+0000              8   ; 
