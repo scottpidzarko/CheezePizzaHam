@@ -67,11 +67,12 @@ rightmenu: dbit 1
 ;---------------- $INCLUDES HERE ----------------
 ;------------------------------------------------
 
+$include(solder_reflow_oven.asm)
+$include(initialize_oven.asm)
 $include(math32.asm)
 $include(control.asm)
 $include(temp_measurement.asm)
 $include(ADC_reader.asm)
-
 
 CSEG
 
@@ -134,7 +135,7 @@ myLUT:
 ; there shouldn't really be any code in this file, so we're just calling the function that does shit.
 
 myprogram:
-		mov SP, #7FH ; Set the stack pointer
+	mov SP, #7FH ; Set the stack pointer
 	mov LEDRA, #0 ; Turn off all LEDs
 	mov LEDRB, #0
 	mov LEDRC, #0
