@@ -75,6 +75,49 @@ $include(ADC_reader.asm)
 
 CSEG
 
+;-------------------------------------------------
+;---------------- STRINGS FOR LCD ----------------
+;-------------------------------------------------
+;
+
+Begin:
+	DB 0A5H, 'Begin', 0
+Settings:
+	DB 0A5H, 'Settings', 0
+	
+Set_Parameters:
+	DB 0A5H, 'Set parameters', 0
+	
+Ramp_Time:
+	DB 0A5H, 'Ramp time', 0
+Reflow_Temp:
+	DB 0A5H, 'Reflow temp', 0
+Reflow_Time:
+	DB 0A5H, 'Reflow time', 0
+Soak_Temp:
+	DB 0A5H, 'Soak temp', 0
+Soak_Time:
+	DB 0A5H, 'Soak time', 0
+	
+Setting_Ramp_Time:
+	DB 'Ramp time:', 0
+Setting_Reflow_Temp:
+	DB 'Reflow temp:', 0
+Setting_Reflow_Time:
+	DB 'Reflow time:', 0
+Setting_Soak_Temp:
+	DB 'Soak temp:', 0
+Setting_Soak_Time:
+	DB 'Soak time:', 0
+	
+Back:
+	DB 0A5H, 'Back', 0
+
+Error_Too_large0:
+	DB 'Error: Value', 0
+Error_Too_large1:
+	DB 'greater than 255', 0
+	
 ;-----------------------------------------------------------------------
 ;---------------- LOOK-UP-TABLES FOR 7SEG Displays, etc ----------------
 ;-----------------------------------------------------------------------
@@ -91,7 +134,11 @@ myLUT:
 ; there shouldn't really be any code in this file, so we're just calling the function that does shit.
 
 myprogram:
-
+		mov SP, #7FH ; Set the stack pointer
+	mov LEDRA, #0 ; Turn off all LEDs
+	mov LEDRB, #0
+	mov LEDRC, #0
+	mov LEDG, #0
 	lcall initialize_oven
 
 Forever:
