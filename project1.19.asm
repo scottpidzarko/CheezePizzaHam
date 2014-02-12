@@ -21,6 +21,10 @@ SCLK EQU P0.2
 MOSI EQU P0.1
 MISO EQU P0.0
 
+
+;setting which sector of flash we are saving our variables to. Do not set to one.
+FLASHSECTOR EQU 2
+
 DSEG at 30H
 count10ms: ds 1
 count10ms2: ds 1
@@ -44,7 +48,6 @@ RampTime: ds 1
 DigitCount: ds 1
 MenuState: ds 1	
 
-
 BSEG
 mf: dbit 1
 timerflag: dbit 1
@@ -58,6 +61,7 @@ secondsflag: dbit 1
 
 $include(math32.asm)
 $include(LCD_User_Interface_v3.asm)
+$include(Flash_Library.asm)
 
 CSEG
 

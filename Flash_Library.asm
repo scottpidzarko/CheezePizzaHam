@@ -1,4 +1,4 @@
-$MODDE2
+$NOLIST
 
 ; This file contains code that saves the five variables into flash memory,
 ; and also recalls them from flash memory. There is a dummy program at the 
@@ -13,21 +13,7 @@ $MODDE2
 ; We select sector SA8 with FLASHSECTOR = 1, SA9 with FLASHSECTOR=2,
 ; and so on.
 
-org 0000H
-	ljmp myprogram
-
-DSEG at 30H
-
-SoakTemp: ds 1
-SoakTime: ds 1
-ReflowTemp: ds 1
-ReflowTime: ds 1
-RampTime: ds 1
-
 CSEG
-
-FLASHSECTOR:
-	db 1
 
 ; To read a byte from flash memory, put the address in dptr.
 ; The result returns in acc.
@@ -164,33 +150,33 @@ done_ReadConfig:
 	ret
 	
 ; Simple dummy program to test things.
-myprogram:
-		mov SP, #7FH
-		mov LEDRA, #0
-		mov LEDRB, #0
-		mov LEDRC, #0
-		mov LEDG, #0
-		mov FLASHSECTOR, #2
-Forever:
-		mov SoakTemp, #111B
-		mov SoakTime, #111011B
-		mov ReflowTemp, #1011B
-		mov ReflowTIme, #10B
+;myprogram:
+		;mov SP, #7FH
+	;	mov LEDRA, #0
+	;	mov LEDRB, #0
+		;mov LEDRC, #0
+		;mov LEDG, #0
+		;mov FLASHSECTOR, #2
+;Forever:
+		;mov SoakTemp, #111B
+		;mov SoakTime, #111011B
+		;mov ReflowTemp, #1011B
+		;mov ReflowTIme, #10B
 		
-		lcall SaveConfig
+		;lcall SaveConfig
 		
-		mov SoakTemp, #0
-		mov SoakTime, #0
-		mov ReflowTemp, #0
-		mov ReflowTIme, #0
+		;mov SoakTemp, #0
+		;mov SoakTime, #0
+		;mov ReflowTemp, #0
+		;mov ReflowTIme, #0
 		
-		lcall ReadConfig
+		;lcall ReadConfig
 		
-		mov LEDRA, SoakTime
-		mov LEDRB, SoakTemp
-		mov LEDRC, ReflowTime
-		mov LEDG, ReflowTemp
+		;mov LEDRA, SoakTime
+		;mov LEDRB, SoakTemp
+		;mov LEDRC, ReflowTime
+	;	mov LEDG, ReflowTemp
 		
-	ljmp Forever
+	;ljmp Forever
 		
-END
+$LIST
